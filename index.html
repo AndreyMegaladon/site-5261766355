@@ -1,0 +1,290 @@
+. На главной странице сделай баннер с заголовком и кнопкой. Ниже сделай секцию с 3 карточками (NBA, Euroleague, Streetball). Добавь темную тему. В конце добавь мини-игру "Попади в кольцо": кольцо движется влево-вправо, а пользователь должен кликнуть мышкой, чтобы бросить мяч (круг) вверх. Если мяч пересекается с кольцом — +1 очко. Все должно быть в одном файле.</s><!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball World</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #ff6600;
+            --card-bg: #1e1e1e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 50px 0;
+            font-size: 2.5rem;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            width: 300px;
+            margin: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        #game-section {
+            background: #000;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 20px auto;
+            border: 2px solid var(--accent-color);
+            overflow: hidden;
+            background: #050505;
+            cursor: crosshair;
+        }
+
+        #basket {
+            position: absolute;
+            top: 20px;
+            width: 80px;
+            height: 10px;
+            background: #ff0000;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.5);
+        }
+
+        #ball {
+            position: absolute;
+            bottom: -50px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: none;
+        }
+
+        #score {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #0a0a0a;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Мир Баскетбола</h1>
+        <p style="margin-bottom: 30px;">Твоя страсть, твоя игра, твоя жизнь.</p>
+        <a href="#game-section" class="btn">Играть сейчас</a>
+    </header>
+
+    <h2 class="section-title">Категории</h2>
+    <div class="cards-container">
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=400&q=80');"></div>
+            <div class="card-content">
+                <h3>NBA</h3>
+                <p>Лучшая лига мира. Место, где рождаются легенды и творится история баскетбола каждый день.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1544919982-b61976f0ba43?auto=format&fit=crop&w=400&q=80');"></div>
+            <div class="card-content">
+                <h3>Euroleague</h3>
+                <p>Европейский стиль игры: тактика, командная работа и невероятная атмосфера на трибунах.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1519861517483-0bd553c8c7c4?auto=format&fit=crop&w=400&q=80');"></div>
+            <div class="card-content">
+                <h3>Streetball</h3>
+                <p>Дух улиц, 3х3 и полная свобода самовыражения на асфальтовых кортах города.</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="game-section">
+        <h2 class="section-title">Мини-игра: Попади в кольцо</h2>
+        <div id="score">Счет: 0</div>
+        <div id="game-container">
+            <div id="basket"></div>
+            <div id="ball"></div>
+        </div>
+        <p>Кликни на игровое поле, чтобы бросить мяч!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Basketball World. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Логика игры
+        const container = document.getElementById('game-container');
+        const basket = document.getElementById('basket');
+        const ball = document.getElementById('ball');
+        const scoreElement = document.getElementById('score');
+
+        let score = 0;
+        let basketX = 0;
+        let basketSpeed = 3;
+        let ballActive = false;
+        let ballX = 0;
+        let ballY = 0;
+
+        // Движение кольца
+        function moveBasket() {
+            basketX += basketSpeed;
+            if (basketX + 80 > container.offsetWidth || basketX < 0) {
+                basketSpeed = -basketSpeed;
+            }
+            basket.style.left = basketX + 'px';
+            requestAnimationFrame(moveBasket);
+        }
+
+        // Бросок мяча
+        container.addEventListener('click', (e) => {
+            if (ballActive) return;
+
+            const rect = container.getBoundingClientRect();
+            ballX = e.clientX - rect.left - 15;
+            ballY = 370;
+            
+            ball.style.display = 'block';
+            ball.style.left = ballX + 'px';
+            ball.style.bottom = '0px';
+            ballActive = true;
+
+            animateBall();
+        });
+
+        function animateBall() {
+            if (!ballActive) return;
+
+            ballY -= 8;
+            ball.style.bottom = (400 - ballY) + 'px';
+
+            // Проверка попадания
+            const ballRect = ball.getBoundingClientRect();
+            const basketRect = basket.getBoundingClientRect();
+
+            if (
+                ballRect.top <= basketRect.bottom &&
+                ballRect.top >= basketRect.top &&
+                ballRect.left + 15 >= basketRect.left &&
+                ballRect.left + 15 <= basketRect.right
+            ) {
+                score++;
+                scoreElement.innerText = 'Счет: ' + score;
+                resetBall();
+                return;
+            }
+
+            // Если улетел за пределы
+            if (ballY < -50) {
+                resetBall();
+                return;
+            }
+
+            requestAnimationFrame(animateBall);
+        }
+
+        function resetBall() {
+            ballActive = false;
+            ball.style.display = 'none';
+        }
+
+        moveBasket();
+    </script>
+</body>
+</html>
