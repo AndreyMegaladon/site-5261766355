@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCalc — Расчет стоимости разработки сайта</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --accent-color: #00f2ff;
+            --secondary-accent: #7000ff;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --card-bg: rgba(20, 20, 20, 0.8);
+            --border-glow: rgba(0, 242, 255, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Background Animation */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 242, 255, 0.15) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Calculator Styles */
+        .calculator-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .calc-group {
+            margin-bottom: 40px;
+        }
+
+        .calc-group label {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+
+        .option-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-item:hover {
+            background: rgba(0, 242, 255, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        .option-item.active {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .option-item input {
+            display: none;
+        }
+
+        .dot {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--text-dim);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+        }
+
+        .option-item.active .dot {
+            border-color: var(--accent-color);
+        }
+
+        .option-item.active .dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Result Panel */
+        .result-panel {
+            position: sticky;
+            bottom: 20px;
+            background: linear-gradient(135deg, var(--secondary-accent), #4a00a8);
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(112, 0, 255, 0.4);
+            z-index: 100;
+            margin-top: 50px;
+        }
+
+        .price-display {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .price-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            display: block;
+        }
+
+        .price-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .btn-order {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-order:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: #111;
+            border: 1px solid var(--accent-color);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            color: #fff;
+            font-family: inherit;
+        }
+
+        .contact-form input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .result-panel {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .calculator-card {
+                padding: 20px;
+            }
+            .hero {
+                padding: 40px 0;
+            }
+        }
+
+        .success-msg {
+            display: none;
+            color: #00ff88;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <header>
+            <a href="#" class="logo">NEO_WEB</a>
+            <div class="contact-info">RU | EN</div>
+        </header>
+
+        <section class="hero">
+            <h1>Узнайте стоимость <br> вашего будущего сайта</h1>
+            <p>Используйте наш конфигуратор, чтобы получить мгновенную оценку проекта в футуристичном дизайне.</p>
+        </section>
+
+        <main class="calculator-card">
+            <!-- Step 1 -->
+            <div class="calc-group">
+                <label>01. Тип проекта</label>
+                <div class="options-grid" id="type-options">
+                    <div class="option-item active" data-price="25000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Landing Page</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Одностраничный сайт для продаж</div>
+                        </div>
+                    </div>
+                    <div class="option-item" data-price="60000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Корпоративный сайт</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Для бизнеса и представительств</div>
+                        </div>
+                    </div>
+                    <div class="option-item" data-price="120000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Интернет-магазин</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">С корзиной и оплатой</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="calc-group">
+                <label>02. Дизайн и анимация</label>
+                <div class="options-grid" id="design-options">
+                    <div class="option-item active" data-price="0">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Минимализм</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Чисто и аккуратно</div>
+                        </div>
+                    </div>
+                    <div class="option-item" data-price="15000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Интерактив</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Продвинутые анимации (GSAP)</div>
+                        </div>
+                    </div>
+                    <div class="option-item" data-price="35000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Cyberpunk Style</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Сложная 3D/Canvas графика</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="calc-group">
+                <label>03. Дополнительно</label>
+                <div class="options-grid" id="extra-options">
+                    <div class="option-item" data-price="10000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>SEO-оптимизация</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Базовая настройка для поиска</div>
+                        </div>
+                    </div>
+                    <div class="option-item" data-price="20000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Админ-панель</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Управление контентом</div>
+                        </div>
+                    </div>
+                    <div class="option-item" data-price="12000">
+                        <span class="dot"></span>
+                        <div>
+                            <strong>Мультиязычность</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-dim)">Поддержка нескольких языков</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="result-panel">
+            <div class="price-display">
+                <span class="price-label">Ориентировочная стоимость:</span>
+                <span class="price-value" id="total-price">25 000 ₽</span>
+            </div>
+            <button class="btn-order" onclick="openModal()">Получить расчет</button>
+        </div>
+
+        <footer style="padding: 60px 0 40px; text-align: center; color: var(--text-dim); font-size: 0.8rem;">
+            &copy; 2023 NEO_WEB DIGITAL SOLUTIONS. БУДУЩЕЕ УЖЕ ЗДЕСЬ.
+        </footer>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 style="margin-bottom: 20px; color: var(--accent-color);">Оставить заявку</h2>
+            <form class="contact-form" id="mainForm">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="email" placeholder="Email" required>
+                <textarea rows="4" placeholder="Кратко о проекте..."></textarea>
+                <div style="margin-bottom: 15px; font-size: 0.9rem;">
+                    Выбранная стоимость: <span id="modal-price" style="color: var(--accent-color); font-weight: bold;"></span>
+                </div>
+                <button type="submit" class="submit-btn">Отправить запрос</button>
+            </form>
+            <div class="success-msg" id="successMsg">Ваша заявка принята в обработку!</div>
+        </div>
+    </div>
+
+    <script>
+        const typeOptions = document.querySelectorAll('#type-options .option-item');
+        const designOptions = document.querySelectorAll('#design-options .option-item');
+        const extraOptions = document.querySelectorAll('#extra-options .option-item');
+        const totalPriceEl = document.getElementById('total-price');
+        const modalPriceEl = document.getElementById('modal-price');
+
+        function calculate() {
+            let total = 0;
+
+            // Type (Single choice)
+            typeOptions.forEach(opt => {
+                if(opt.classList.contains('active')) total += parseInt(opt.dataset.price);
+            });
+
+            // Design (Single choice)
+            designOptions.forEach(opt => {
+                if(opt.classList.contains('active')) total += parseInt(opt.dataset.price);
+            });
+
+            // Extra (Multiple choice)
+            extraOptions.forEach(opt => {
+                if(opt.classList.contains('active')) total += parseInt(opt.dataset.price);
+            });
+
+            const formattedPrice = total.toLocaleString('ru-RU') + ' ₽';
+            totalPriceEl.innerText = formattedPrice;
+            modalPriceEl.innerText = formattedPrice;
+        }
+
+        // Logic for single choice groups
+        function setupSingleChoice(options) {
+            options.forEach(opt => {
+                opt.addEventListener('click', () => {
+                    options.forEach(o => o.classList.remove('active'));
+                    opt.classList.add('active');
+                    calculate();
+                });
+            });
+        }
+
+        // Logic for multiple choice
+        extraOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                opt.classList.toggle('active');
+                calculate();
+            });
+        });
+
+        setupSingleChoice(typeOptions);
+        setupSingleChoice(designOptions);
+
+        // Modal Logic
+        function openModal() {
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('orderModal')) {
+                closeModal();
+            }
+        }
+
+        // Form Submission
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            console.log('Данные формы:', {
+                price: totalPriceEl.innerText,
+                client: this.querySelector('input[type="text"]').value,
+                email: this.querySelector('input[type="email"]').value
+            });
+            
+            this.style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+            
+            setTimeout(() => {
+                closeModal();
+                this.style.display = 'block';
+                document.getElementById('successMsg').style.display = 'none';
+                this.reset();
+            }, 3000);
+        });
+
+        // Init calculation
+        calculate();
+    </script>
+</body>
+</html>
