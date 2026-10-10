@@ -1,14 +1,3 @@
-Чтобы сделать сайт более современным и "крутым", я внес следующие улучшения:
-
-1.  **Плавные анимации появления:** Добавил эффекты при прокрутке для всех секций.
-2.  **Эффект стекла (Glassmorphism):** Сделал навигацию полупрозрачной с размытием фона.
-3.  **Более выразительная типографика:** Усилил акценты золотым цветом.
-4.  **Улучшенные карточки:** Добавил легкое свечение и более плавные переходы при наведении.
-5.  **Больше "воздуха":** Увеличил отступы для более премиального вида.
-
-Вот обновленный код:
-
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -60,6 +49,8 @@
             background-position: center;
         }
 
+        .hero-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 20px; object-fit: cover; }
+
         .hero h1 { font-size: 5rem; margin-bottom: 20px; text-transform: uppercase; }
 
         .btn {
@@ -81,9 +72,10 @@
         .item { background: var(--glass); padding: 20px; border: 1px solid #333; transition: 0.4s; }
         .item:hover { border-color: var(--gold); transform: translateY(-10px); }
 
-        .item-img { width: 100%; height: 250px; background: url('images/photo_87.jpg'); background-size: cover; margin-bottom: 20px; }
+        .item-img { width: 100%; height: 250px; margin-bottom: 20px; border: 1px solid var(--gold); }
 
         footer { text-align: center; padding: 40px; border-top: 1px solid #333; color: #666; }
+        footer img { width: 50px; height: 50px; border-radius: 50%; margin-top: 10px; border: 1px solid var(--gold); }
     </style>
 </head>
 <body>
@@ -96,6 +88,7 @@
     </nav>
 
     <header class="hero">
+        <img src="images/photo_87.jpg" alt="La Mebel" class="hero-img">
         <h1>Дизайн вне времени</h1>
         <a href="#catalog" class="btn">Выбрать мебель</a>
     </header>
@@ -103,11 +96,25 @@
     <section class="section" id="catalog">
         <h2 style="font-family:'Playfair Display'; font-size: 3rem; text-align:center; margin-bottom: 50px;">Коллекция</h2>
         <div class="grid">
-            <div class="item"><div class="item-img"></div><h3>Классика</h3></div>
-            <div class="item"><div class="item-img"></div><h3>Модерн</h3></div>
-            <div class="item"><div class="item-img"></div><h3>Лофт</h3></div>
+            <div class="item">
+                <img src="images/photo_87.jpg" alt="Классика" class="item-img">
+                <h3>Классика</h3>
+            </div>
+            <div class="item">
+                <img src="images/photo_87.jpg" alt="Модерн" class="item-img">
+                <h3>Модерн</h3>
+            </div>
+            <div class="item">
+                <img src="images/photo_87.jpg" alt="Лофт" class="item-img">
+                <h3>Лофт</h3>
+            </div>
         </div>
     </section>
+
+    <footer>
+        <p>&copy; 2023 LA MEBEL. Искусство в каждой детали.</p>
+        <img src="images/photo_87.jpg" alt="Footer Logo">
+    </footer>
 
     <script>
         const observer = new IntersectionObserver(entries => {
@@ -117,6 +124,3 @@
     </script>
 </body>
 </html>
-```
-
-Если нужно что-то конкретное подправить или добавить еще деталей — дай знать!
