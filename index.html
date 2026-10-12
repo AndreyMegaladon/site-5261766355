@@ -1,0 +1,572 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chestnut Coffee — Menü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAF8F5;
+            --card-bg: #FFFFFF;
+            --text-main: #2C221E;
+            --text-muted: #7C706B;
+            --accent: #A86B45;
+            --accent-light: #F4ECE6;
+            --border: #EFECE6;
+            --shadow: 0 10px 30px rgba(44, 34, 30, 0.04);
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(to bottom, #F4ECE6, var(--bg-color));
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .logo-badge {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(44, 34, 30, 0.08);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .item-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-light);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.3rem; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-badge">At a Glance</div>
+        <h1>Chestnut Coffee</h1>
+        <p class="subtitle">Entdecke unsere handgemachten Kaffeespezialitäten und Köstlichkeiten</p>
+    </header>
+
+    <div class="container">
+
+        <!-- WOLT SPECIALS -->
+        <h2 class="section-title">Wolt Specials 🌟</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Nur Für Dich</span>
+                        <span class="item-price">8,50 €</span>
+                    </div>
+                    <div class="item-desc">Einen Flat White und ein Pistazien Croissant für deinen perfekten Morgen...oder zwischendurch</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Perfekter Start</span>
+                        <span class="item-price">13,50 €</span>
+                    </div>
+                    <div class="item-desc">2 Kaffeespezialitäten + 2 Croissants nach Wahl</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KAFFEE & TEE -->
+        <h2 class="section-title">Kaffee & Tee ☕️</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Pistachio Latte</span>
+                        <span class="item-price">5,90 €</span>
+                    </div>
+                    <div class="item-desc">Kaffeespezialität mit Pistazien Geschmack</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Matcha Latte 0,3 L</span>
+                        <span class="item-price">5,40 €</span>
+                    </div>
+                    <div class="item-desc">Fein gemahlener Grüntee (Matcha) mit aufgeschäumter Milch.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Caffe Latte 0,3 L</span>
+                        <span class="item-price">4,90 €</span>
+                    </div>
+                    <div class="item-desc">Ein mildes Kaffeegetränk mit hohem Milchanteil und einem sanften Espressogeschmack.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Iced Strawberry Matcha 0,4 L</span>
+                        <span class="item-price">5,90 €</span>
+                    </div>
+                    <div class="item-desc">Ein gekühltes Getränk, das den erdigen Geschmack von Matcha-Tee mit der fruchtigen Süße von Erdbeeren kombiniert.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Cortado 0,125 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Ein Getränk aus Espresso, der mit einer kleinen Menge warmer Milch "geschnitten" wird, für einen kräftigen Kaffeegeschmack.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Pumpkin Spice Latte 0,3 L</span>
+                        <span class="item-price">5,80 €</span>
+                    </div>
+                    <div class="item-desc">Ein saisonaler Latte mit Espresso, Kürbispüree-Gewürzmischung und aufgeschäumter Milch.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Latte Macchiato 0,3 L</span>
+                        <span class="item-price">5,20 €</span>
+                    </div>
+                    <div class="item-desc">Ein Getränk aus heißer Milch und Milchschaum, dem ein Espresso hinzugefügt wird.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Chai Latte 0,3 L</span>
+                        <span class="item-price">5,40 €</span>
+                    </div>
+                    <div class="item-desc">Ein gewürzter Schwarztee, kombiniert mit heißer, aufgeschäumter Milch.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Cappuccino 0,2 L</span>
+                        <span class="item-price">4,60 €</span>
+                    </div>
+                    <div class="item-desc">Ein Drittel Espresso, ein Drittel heiße Milch, ein Drittel Milchschaum.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Flat White 0,2 L</span>
+                        <span class="item-price">4,90 €</span>
+                    </div>
+                    <div class="item-desc">Ein Kaffeegetränk aus einem doppelten Ristretto-Shot, übergossen mit samtig-cremigem Milchschaum.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Kaffeebohnen 250 G</span>
+                        <span class="item-price">14,00 €</span>
+                    </div>
+                    <div class="item-desc">"Specialty Coffee" Bohnen aus Indien, Brasilien, Mexico mit leichter Schokonote</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Americano 0,2 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Espresso, verlängert mit heißem Wasser. Kräftig und pur.</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Dirty Chai 0,3 L</span>
+                        <span class="item-price">5,80 €</span>
+                    </div>
+                    <div class="item-desc">Chai Latte mit einem Schuss Espresso</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ALKOHOLFREIE GETRÄNKE -->
+        <h2 class="section-title">Alkoholfreie Getränke 🥤</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Spreequell Naturell 0,33 L</span>
+                        <span class="item-price">3,50 €</span>
+                    </div>
+                    <div class="item-desc">Natürliches Mineralwasser ohne Kohlensäure</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Spreequell Classic 0,33 L</span>
+                        <span class="item-price">3,50 €</span>
+                    </div>
+                    <div class="item-desc">Natürliches Mineralwasser mit Kohlensäure</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Fritz-Limo Zitrone 0,33 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Erfrischungsgetränk mit Zitronengeschmack, Zucker, mit Kohlensäure</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Elephant Bay Peach 0,33 L</span>
+                        <span class="item-price">4,50 €</span>
+                    </div>
+                    <div class="item-desc">Erfrischungsgetränk mit Pfirsichgeschmack, Zucker, mit Kohlensäure</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Fritz-Spritz Bio-Rhabarberschorle 0,33 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Bio-Rhabarberschorle, Mischung aus Rhabarbersaft und Mineralwasser, ohne Zuckerzusatz, mit Kohlensäure</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Fritz-Kola Zuckerfrei 0,33 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Zuckerfreie Cola, koffeinhaltig, mit Pflanzenextrakten</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Fritz-Spritz Bio-Apfelschorle 0,33 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Bio-Apfelsaftschorle, Mischung aus Apfelsaft und Mineralwasser, ohne Zuckerzusatz, mit Kohlensäure</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Fritz-Kola 0,33 L</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">Koffeinhaltiges Erfrischungsgetränk mit Cola-Geschmack, Zucker, mit Kohlensäure</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPEZIALITÄTEN -->
+        <h2 class="section-title">Spezialitäten 🍰🥐</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Zitronen Tartelette</span>
+                        <span class="item-price">5,50 €</span>
+                    </div>
+                    <div class="item-desc">Zitronenkuchen mit Zitronencreme-Füllung</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Pastel De Nata Mit Pistazie</span>
+                        <span class="item-price">4,40 €</span>
+                    </div>
+                    <div class="item-desc">in einer Größe deiner Wahl</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Croissant</span>
+                        <span class="item-price">3,10 €</span>
+                    </div>
+                    <div class="item-desc">mit einer Zutat deiner Wahl</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Queijada De Amendoa</span>
+                        <span class="item-price">3,60 €</span>
+                    </div>
+                    <div class="item-desc">portugiesisches Mandel-Pudding-Dessert</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Empanada Feta & Spinat</span>
+                        <span class="item-price">3,30 €</span>
+                    </div>
+                    <div class="item-desc">gefüllte Teigtaschen aus Blätterteig mit Spinat und Feta</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">La Seducción Choco</span>
+                        <span class="item-price">4,30 €</span>
+                    </div>
+                    <div class="item-desc">2 Stück Blätterteiggebäck überzogen mit Schokolade und Honig</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Apfel Tartelette</span>
+                        <span class="item-price">4,90 €</span>
+                    </div>
+                    <div class="item-desc">Apfel Küchlein</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Mandel Croissant</span>
+                        <span class="item-price">3,90 €</span>
+                    </div>
+                    <div class="item-desc">Croissant mit Mandelfüllung</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">La Seducción</span>
+                        <span class="item-price">4,30 €</span>
+                    </div>
+                    <div class="item-desc">2 Stück Blätterteiggebäck überzogen mit Puder und Honig</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Brownie Vegan</span>
+                        <span class="item-price">4,20 €</span>
+                    </div>
+                    <div class="item-desc">veganer Brownie mit einem Schoko-Glasur</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Brownie (Glutenfrei)</span>
+                        <span class="item-price">4,60 €</span>
+                    </div>
+                    <div class="item-desc">Glutenfreies Schokoladenkuchen</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Croissant Crema</span>
+                        <span class="item-price">3,90 €</span>
+                    </div>
+                    <div class="item-desc">Croissant mit Crema Füllung</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Pastel De Nata Blaubeere</span>
+                        <span class="item-price">3,80 €</span>
+                    </div>
+                    <div class="item-desc">Blätterteigtörtchen mit Konditorcreme und Blaubeeren</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Pastel De Nata</span>
+                        <span class="item-price">3,60 €</span>
+                    </div>
+                    <div class="item-desc">Blätterteigtörtchen mit einer Zutat deiner Wahl</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Queijada De Laranja</span>
+                        <span class="item-price">3,60 €</span>
+                    </div>
+                    <div class="item-desc">portugiesisches Orangen-Dessert</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Nata Brasileira</span>
+                        <span class="item-price">3,80 €</span>
+                    </div>
+                    <div class="item-desc">aus Mürbeteig mit Konditorcreme und Mandeln</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Schoko Croissant</span>
+                        <span class="item-price">3,90 €</span>
+                    </div>
+                    <div class="item-desc">Blätterteig Gebäck mit Schokoladenfüllung</div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Pistazien Croissant</span>
+                        <span class="item-price">4,30 €</span>
+                    </div>
+                    <div class="item-desc">Croissant mit Pistazienfüllung</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BESTECK -->
+        <h2 class="section-title">Besteck</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div>
+                    <div class="item-header">
+                        <span class="item-title">Besteck</span>
+                        <span class="item-price">Gratis</span>
+                    </div>
+                    <div class="item-desc">Das Restaurant fügt Besteck wie Messer, Löffel, Gabeln usw. hinzu, falls vorhanden</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; Chestnut Coffee. Genieß deinen Tag mit gutem Kaffee.</p>
+    </footer>
+
+</body>
+</html>
