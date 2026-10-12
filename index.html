@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chestnut Coffee — Menü</title>
+    <title>Chestnut Coffee — Berlin</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -33,7 +33,7 @@
 
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 80px 20px 50px;
             background: linear-gradient(to bottom, #F4ECE6, var(--bg-color));
             border-bottom: 1px solid var(--border);
             margin-bottom: 40px;
@@ -54,15 +54,38 @@
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .cafe-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .cafe-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .cafe-info a:hover {
+            opacity: 0.8;
         }
 
         .container {
@@ -143,8 +166,12 @@
             padding-top: 40px;
         }
 
+        footer p {
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 600px) {
-            h1 { font-size: 2.3rem; }
+            h1 { font-size: 2.4rem; }
             .menu-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -154,7 +181,12 @@
     <header>
         <div class="logo-badge">At a Glance</div>
         <h1>Chestnut Coffee</h1>
-        <p class="subtitle">Entdecke unsere handgemachten Kaffeespezialitäten und Köstlichkeiten</p>
+        <p class="subtitle">Handgemachte Kaffeespezialitäten & Köstlichkeiten im Herzen von Berlin</p>
+        <div class="cafe-info">
+            <span>📍 Kastanienallee 79, 10435 Berlin</span>
+            <span>•</span>
+            <a href="https://www.instagram.com/chestnutcoffee_?igshid=YmMyMTA2M2Y%3D" target="_blank">Instagram @chestnutcoffee_</a>
+        </div>
     </header>
 
     <div class="container">
@@ -565,7 +597,8 @@
     </div>
 
     <footer>
-        <p>&copy; Chestnut Coffee. Genieß deinen Tag mit gutem Kaffee.</p>
+        <p>&copy; Chestnut Coffee, Berlin. Genieß deinen Tag mit gutem Kaffee.</p>
+        <p><a href="https://www.instagram.com/chestnutcoffee_?igshid=YmMyMTA2M2Y%3D" target="_blank" style="color: var(--accent); text-decoration: none;">Besuche uns auf Instagram</a></p>
     </footer>
 
 </body>
